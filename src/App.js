@@ -1,22 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { getPlaces } from './firebaseController';
+
+import { HashRouter, Route, Switch } from 'react-router-dom';
+
+import Main from 'components/Main';
+import List from 'components/List';
+import Profile from 'components/Profile';
 
 function App() {
-  
-  getPlaces();
+	const HeightContentApp = {
+		minHeight: window.innerWidth > 800 ? '100vh' : window.innerHeight + 'px',
+	};
 
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>TP Final</p>
-				<a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-					Learn React
-				</a>
-			</header>
-		</div>
+		<HashRouter basename="/">
+			<div style={HeightContentApp} className="content-app">
+				<Switch>
+					<Route exact path="/comida">
+						<List type="comida" />
+					</Route>
+					<Route exact path="/helado">
+						<List type="helado" />
+					</Route>
+					<Route exact path="/bebidas">
+						<List type="bebidas" />
+					</Route>
+					<Route exact path="/:id">
+						<Profile />
+					</Route>
+					<Route path="/" component={Main} />
+				</Switch>
+			</div>
+		</HashRouter>
 	);
 }
 
