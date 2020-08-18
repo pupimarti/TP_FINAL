@@ -1,0 +1,43 @@
+.content-circle{
+    width: 15vmin;
+    height: 15vmin;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 100px;
+    max-height: 100px;
+    background-color: rgba(255, 255, 255, .2);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.circle-img{
+    width: 80%;
+    height: 80%;
+    margin-bottom: 5px;
+}
+
+.circle-text{
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Ripple effect */
+/* .ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+.ripple:hover {
+  background: rgba(255, 255, 255, .2) radial-gradient(circle, transparent 1%, rgba(0, 0, 0, .3) 1%) center/15000%;
+}
+.ripple:active {
+  background-color: rgba(255, 255, 255, .2);
+  background-size: 100%;
+  transition: background 0s;
+}
+ */

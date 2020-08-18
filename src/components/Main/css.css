@@ -1,0 +1,59 @@
+.content-main{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    min-height: 100%;
+    opacity: 0;
+}
+
+.main-content-logo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.main-logo{
+    width: 80%;
+    max-width: 500px;
+}
+
+.content-sections{
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 250px;
+    width: 450px;
+    max-width: 50vw;
+    height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.fade-in{
+	animation: fadeIn 0.6s ease-in-out both;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.container-footer{
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.footer{
+    font-size: 12px;
+    font-weight: bold;
+}

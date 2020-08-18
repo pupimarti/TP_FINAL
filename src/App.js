@@ -6,11 +6,14 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import Main from 'components/Main';
 import List from 'components/List';
 import Profile from 'components/Profile';
+import { getPlaces } from 'firebaseController';
 
 function App() {
 	const HeightContentApp = {
 		minHeight: window.innerWidth > 800 ? '100vh' : window.innerHeight + 'px',
 	};
+
+	getPlaces();
 
 	return (
 		<HashRouter basename="/">

@@ -1,19 +1,43 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import "./css.css";
 
-export default function Main() {
-	return (
-		<div>
-			<p>Main</p>
-			<div>
-				<Link to="/helado">IR A HELADOS</Link>
-			</div>
-			<div>
-				<Link to="/comida">IR A COMIDAS</Link>
-			</div>
-			<div>
-				<Link to="/bebidas">IR A BEBIDAS</Link>
-			</div>
-		</div>
-	);
+import logo from "img/logo-completo.png";
+
+import Circle from "components/Circle";
+
+function Main() {
+  
+  const sections = [
+    {
+      name: "Comida",
+      url: "/comida",
+    },
+    {
+      name: "Helado",
+      url: "/helado",
+    },
+    {
+      name: "Bebidas",
+      url: "/bebidas"
+    }
+  ];
+
+  return (
+    <div className="content-main fade-in">
+      <header className="main-content-logo">
+        <img src={logo} alt="logo" className="main-logo" />
+      </header>
+      <div className="content-sections">
+          {sections &&
+            sections.map((s, i) => (
+              <Circle key={i} name={s.name} url={s.url} />
+            ))}
+      </div>
+      <footer className="container-footer">
+		<a href="www.google.com" target="_blank" rel="noopener noreferrer" className="footer">Para publicar tu comercio haz click aquí.</a>
+      </footer>
+    </div>
+  );
 }
+
+export default React.memo(Main); 
