@@ -25,8 +25,8 @@ export const getPlaces = () => {
             console.log(db_data);
 			return db_data;
 		})
-		.catch((e) => {
-			console.log(e);
-			throw new Error('Ocurrió un error. Vuelva a intentarlo más tarde.');
-		});
+		// .catch((e) => {
+		// 	console.log(e);
+		// 	throw new Error('Ocurrió un error. Vuelva a intentarlo más tarde.');
+		// });
 };
