@@ -1,0 +1,20 @@
+.container-search{
+    width: 100%;
+    display: flex;
+    background-color: rgba(255,255,255,.1);    
+    border-radius: 15px;
+}
+
+.search-icon{
+    width: 20px;
+    height: 20px;
+    padding:8px;
+}
+
+.search-input{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    color: #fafafa;
+    font-size: 16px;
+}
