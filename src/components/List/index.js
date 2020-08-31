@@ -93,6 +93,7 @@ export default function List(props) {
 										<Item
 											name={doc.name}
 											phone={doc.phone}
+											address={doc.address}
 											id={doc.id}
 											type={props.type}
 											send={doc.send}

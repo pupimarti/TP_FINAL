@@ -34,6 +34,10 @@
     color: rgba(255, 255, 255, .6)
 }
 
+.profile-ubication:hover{
+    opacity: .8;
+}
+
 .profile-state{
     font-size: 14px;
     width: 100px;
@@ -67,6 +71,10 @@
     font-weight: bold;
     justify-content: center;
     font-size: 15px;
+}
+
+.profile-call:hover{
+  opacity: .8;
 }
 
 .container-red{
