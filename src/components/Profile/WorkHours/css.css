@@ -1,0 +1,63 @@
+.container-workhours{
+    width: 350px;
+    height: 60px;
+    box-sizing: border-box;
+    max-width: 95vw;
+    margin: 0 auto;
+    font-size: 14px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: rgba(255, 255, 255, .1);
+    position: relative;
+}
+
+.workhours-icon{
+    width: 50px;
+    height: 35px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.workhours-icon path{
+    fill: #5282d0;
+}
+
+.workhours-days{
+    display: flex;
+    justify-content: space-between;
+}
+
+.workhours-day{
+    width: 100px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.day-select{
+    font-weight: bold;
+}
+
+.workhours-hours{
+    width: 180px;
+    text-align: left;
+    border-radius: 0 0 5px 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.workhours-arrow{
+    transform: rotate(-45deg);
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+}
+
+.workhours-arrow.showall{
+    transform: rotate(135deg);
+}
