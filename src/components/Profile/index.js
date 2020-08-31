@@ -98,14 +98,7 @@ export default function Profile() {
           </div>
           {data.address && (
             <div>
-             <a href="https://www.google.com/search?sxsrf=ALeKk02EkI55dX61ainPauFNwHtK6bPIxA:1598895035374&ei=GzJNX_L9HKSf5OUP8Yu7
-             -A4&q=havanna%20pinamar&oq=havanna+pinamar&gs_lcp=CgZwc3ktYWIQAzIECCMQJzICCAAyBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBY
-             QHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjICCCY6CAgAELEDEIMBOgUIABCxAzoCCC46CAguELEDEIMBOgYIIxAnEBM6BwguELEDEEM6BAgAEEM6Cggu
-             ELEDEIMBEEM6BAguEEM6BwgAELEDEEM6BwgAEBQQhwI6BwgAEAoQywE6BQgAEMsBOgQIABAKOggIABAWEAoQHlCOnxlYzKsZYJysGWgAcAB4AIAB_wGIA
-             dYMkgEFOS4yLjOYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=psy-ab&ved=2ahUKEwixgveU_MXrAhVRILkGHdyyC38QvS4wAXoECAsQIA&uact=5&nps
-             ic=0&rflfq=1&rlha=0&rllag=-37114314,-56862927,244&tbm=lcl&rldimm=12422196118677511887&lqi=Cg9oYXZhbm5hIHBpbmFtYXIiA4g
-             BAVoaCgdoYXZhbm5hIg9oYXZhbm5hIHBpbmFtYXI&rldoc=1&tbs=lrf:!1m4!1u3!2m2!3m1!1e1!2m1!1e3!3sIAE,lf:1,lf_ui:4&rlst=f#rlfi=
-             hd:;si:;mv:[[-37.0778665,-56.8320156],[-37.1698167,-56.9059976]]" 
+             <a href="https://www.google.com.ar/maps/preview"
              target="_blank"
              rel="noopener noreferrer"
              className="profile-ubication"
