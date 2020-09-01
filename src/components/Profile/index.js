@@ -98,13 +98,14 @@ export default function Profile() {
           </div>
           {data.address && (
             <div>
-             <a href="https://www.google.com.ar/maps/preview"
-             target="_blank"
-             rel="noopener noreferrer"
-             className="profile-ubication"
-             >
-             {data.address}
-             </a> 
+              <a
+                href="https://www.google.com.ar/maps/preview"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="profile-ubication"
+              >
+                {data.address}
+              </a>
             </div>
           )}
           {data.phone && (
@@ -119,7 +120,7 @@ export default function Profile() {
             {data.instagram && (
               <div>
                 <a
-                  href={data.instagram}
+                  href={"https://instagram.com/" + data.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="container-red"
@@ -132,7 +133,7 @@ export default function Profile() {
             {data.facebook && (
               <div>
                 <a
-                  href={data.facebook}
+                  href={"https://www.facebook.com/" + data.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="container-red"
