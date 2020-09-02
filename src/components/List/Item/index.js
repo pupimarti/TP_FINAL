@@ -1,6 +1,7 @@
 import React from "react";
 
 import { ReactComponent as Phone } from "img/telefono.svg";
+import { ReactComponent as WhatsApp } from "img/whatsapp.svg";
 
 import { Img } from "react-image";
 import Loading from "components/Loading";
@@ -33,6 +34,7 @@ function Item(props) {
           href={"tel:+549" + props.phone}
           className="container-button-list-item"
         >
+          <WhatsApp className="list-wpp" />
           <Phone className="list-phone" />
         </a>
       )}
