@@ -26,11 +26,11 @@ function App() {
 					<Route exact path="/bebidas">
 						<List type="bebidas" />
 					</Route>
-					<Route exact path="/:id">
-						<Profile />
-					</Route>
 					<Route exact path="/login">
 						<Login />
+					</Route>
+					<Route exact path="/:id">
+						<Profile />
 					</Route>
 					<Route path="/" component={Main} />
 				</Switch>

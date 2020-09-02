@@ -35,7 +35,6 @@ function Main() {
             ))}
       </div>
       <footer className="container-footer">
-		{/* <a href="www.google.com" target="_blank" rel="noopener noreferrer" className="footer">Para publicar tu comercio haz click aquí.</a> */}
       <Link to="/login" className="footer">Para publicar tu comercio haz click aquí.</Link>
       </footer>
     </div>
