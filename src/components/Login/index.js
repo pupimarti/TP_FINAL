@@ -9,7 +9,8 @@ export default function Login() {
   return (
     <form>
       <div className="login">
-        <Link to="/">
+        <Link to="/" className="login-header">
+          <div className="back"></div>
           <h1>PINAMAR-PIDE</h1>
         </Link>
         <div className="login-box">

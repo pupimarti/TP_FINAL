@@ -6,6 +6,15 @@
   background-size: cover;
 }
 
+.login-header {
+	display: flex;
+	align-self: center;
+  }
+  
+  .login .back {
+	margin: 7px;
+  }
+
 .login-box {
   width: 320px;
   height: 420px;

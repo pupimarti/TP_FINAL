@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./css.css";
 import { Link } from "react-router-dom";
 
-
 export default function Login() {
   const [mail, setMail] = useState("");
   const [password, setPassowrd] = useState("");
@@ -11,7 +10,8 @@ export default function Login() {
   return (
     <form>
       <div className="register">
-        <Link to="/">
+        <Link to="/" className="register-header">
+          <div className="back"></div>
           <h1>PINAMAR-PIDE</h1>
         </Link>
         <div className="register-box">
@@ -41,7 +41,7 @@ export default function Login() {
             />
           </div>
           <div className="textbox">
-            <i className="fas fa-lock" />
+            <i className="fas fa-key" />
             <input
               type="password"
               value={confirmPassword}
