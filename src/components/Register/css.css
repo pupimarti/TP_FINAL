@@ -1,0 +1,97 @@
+.register {
+    /* background: url(bg-1.jpg); */
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .register-box {
+    width: 320px;
+    height: 480px;
+    background: rgba(0, 0, 0, 0.418);
+    color: white;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    border-radius: 2%;
+  }
+  
+  .register-box-loading {
+    padding: 0 !important;
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 45px);
+  }
+  .register h1 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+  }
+  .message-error {
+    border-bottom: 1px solid #5282d0;
+    border-top: 1px solid #5282d0;
+    border-radius: 2px;
+    margin-top: -2px;
+    padding: 5px 5px;
+  }
+  .textbox {
+    display: flex;
+  }
+  .textbox i {
+    border: none;
+    background: transparent;
+    height: 40px;
+    color: var(--white);
+    font-size: 16px;
+    margin-right: 8px;
+    display: flex;
+    align-self: center;
+  }
+  .register-box input {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .register-box input[type="email"],
+  input[type="password"] {
+    border: none;
+    border-bottom: 1px solid white;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: white;
+    font-size: 16px;
+  }
+  .register-box input:focus {
+    border-bottom: 1px solid #5282d0;
+  }
+  .register-box p {
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+  }
+  .register-box p:hover {
+    color: #5282d0;
+  }
+  .register .button {
+    height: 45px;
+    border-radius: 0.3em;
+    border: none;
+    background-color: #5282d0;
+    color: white;
+  }
+  
+  .register .button:hover {
+    opacity: 0.8;
+  }
+  

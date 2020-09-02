@@ -7,6 +7,7 @@ import Main from 'components/Main';
 import List from 'components/List';
 import Profile from 'components/Profile';
 import Login from 'components/Login';
+import Register from 'components/Register';
 
 function App() {
 	const HeightContentApp = {
@@ -28,6 +29,9 @@ function App() {
 					</Route>
 					<Route exact path="/login">
 						<Login />
+					</Route>
+					<Route exact path="/register">
+						<Register />
 					</Route>
 					<Route exact path="/:id">
 						<Profile />

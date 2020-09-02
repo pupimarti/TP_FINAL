@@ -2,19 +2,21 @@ import React, { useState } from "react";
 import "./css.css";
 import { Link } from "react-router-dom";
 
+
 export default function Login() {
   const [mail, setMail] = useState("");
   const [password, setPassowrd] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
     <form>
-      <div className="login">
+      <div className="register">
         <Link to="/">
           <h1>PINAMAR-PIDE</h1>
         </Link>
-        <div className="login-box">
+        <div className="register-box">
           <img src={require("img/logo.png")} alt="avatar" className="avatar" />
-          <h1>Iniciar Sesión</h1>
+          <h1>Registrarme</h1>
 
           <div className="textbox">
             <i className="fas fa-user" />
@@ -38,9 +40,20 @@ export default function Login() {
               required
             />
           </div>
+          <div className="textbox">
+            <i className="fas fa-lock" />
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirmar contraseña"
+              className="input"
+              required
+            />
+          </div>
           <input type="submit" className="button" value="Vamos" />
-          <Link to="/register">
-            <p>Ya tengo una cuenta</p>
+          <Link to="/login">
+            <p>No tengo una cuenta</p>
           </Link>
         </div>
       </div>
