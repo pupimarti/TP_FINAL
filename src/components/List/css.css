@@ -123,15 +123,36 @@
     padding: 10px;
     background-color: rgba(0, 0, 0, .3);
     border-radius: 150px;
+    margin-left: 8px;
 }
 
+.list-wpp{
+    width: 42px;
+    height: 42px;
+    border-radius: 150px;
+    margin-bottom: 1.5px;
+}
 @media screen and (max-width:400px){
     .list-phone{
         width: 20px;
         height: 20px;
         padding: 7px;
         right: 5px;
-    }    
+    }   
+    .list-wpp{
+        width: 31px;
+        height: 31px;
+        border-radius: 150px;
+        margin-bottom: 1.1px;
+    } 
+}
+@media screen and (max-width:325px){
+    .list-phone{
+        display: none;
+    }  
+    .list-wpp{
+        display: none;
+    }  
 }
 
 .reintentar{
