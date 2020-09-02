@@ -118,7 +118,7 @@ export default function Profile() {
           )}
           {data.phone && (
             <div>
-              <a href={"tel:+549" + data.phone} className="profile-wpp">
+              <a href= "https://api.whatsapp.com/send?phone=[+549][1138308699]" className="profile-wpp">
                 {/* <img src={phone} className="profile-phone" alt="Llamar" /> */}
                 Abrir WhatsApp
               </a>
