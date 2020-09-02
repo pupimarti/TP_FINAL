@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./css.css";
+// import { Link } from "react-router-dom";
+// import logo from 'img/logo-completo.png';
 
 export default function Login() {
   const [mail, setMail] = useState("");
@@ -8,6 +10,14 @@ export default function Login() {
   return (
     <form>
       <div className="login">
+      {/* <header className="navbar">
+        <Link to="/" className="container-back">
+          <div className="back"></div>
+        </Link>
+        <Link to="/">
+          <img src={logo} alt="logo" className="navbar-logo" />
+        </Link>
+      </header> */}
         <div className="login-box">
           <img src={require("img/logo.png")} alt="avatar" className="avatar" />
           <h1>Iniciar Sesión</h1>
@@ -35,7 +45,9 @@ export default function Login() {
             />
           </div>
           <input type="submit" className="button" value="Vamos" />
-          <a href="www.google.com">Olvidé mi contraseña</a>
+          <div style={{display: "flex",flexDirection: "column"}} >
+          <a href="www.google.com">No tengo una cuenta</a>
+          </div>
         </div>
       </div>
     </form>
