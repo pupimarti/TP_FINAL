@@ -115,6 +115,14 @@ export default function Profile() {
               </a>
             </div>
           )}
+          {data.phone && (
+            <div>
+              <a href={"tel:+549" + data.phone} className="profile-wpp">
+                {/* <img src={phone} className="profile-phone" alt="Llamar" /> */}
+                Abrir WhatsApp
+              </a>
+            </div>
+          )}
           <div className="container-redes">
             {data.instagram && (
               <div>
