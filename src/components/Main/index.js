@@ -4,6 +4,7 @@ import "./css.css";
 import logo from "img/logo-completo.png";
 
 import Circle from "components/Circle";
+import { Link } from "react-router-dom";
 
 function Main() {
   
@@ -34,7 +35,8 @@ function Main() {
             ))}
       </div>
       <footer className="container-footer">
-		<a href="www.google.com" target="_blank" rel="noopener noreferrer" className="footer">Para publicar tu comercio haz click aquí.</a>
+		{/* <a href="www.google.com" target="_blank" rel="noopener noreferrer" className="footer">Para publicar tu comercio haz click aquí.</a> */}
+      <Link to="/login" className="footer">Para publicar tu comercio haz click aquí.</Link>
       </footer>
     </div>
   );

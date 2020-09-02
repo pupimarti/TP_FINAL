@@ -6,6 +6,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import Main from 'components/Main';
 import List from 'components/List';
 import Profile from 'components/Profile';
+import Login from 'components/Login';
 
 function App() {
 	const HeightContentApp = {
@@ -27,6 +28,9 @@ function App() {
 					</Route>
 					<Route exact path="/:id">
 						<Profile />
+					</Route>
+					<Route exact path="/login">
+						<Login />
 					</Route>
 					<Route path="/" component={Main} />
 				</Switch>
