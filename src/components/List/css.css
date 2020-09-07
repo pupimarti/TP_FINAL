@@ -117,6 +117,12 @@
     right: 5px;
 }
 
+.container-button-list-item-wpp{
+    position: absolute;
+    top: calc(50% - 19px);
+    right: 60px;
+}
+
 .list-phone{
     width: 25px;
     height: 25px;
@@ -127,12 +133,14 @@
 }
 
 .list-wpp{
-    width: 42px;
-    height: 42px;
+    width: 41px;
+    height: 41px;
     border-radius: 150px;
-    margin-bottom: 1.5px;
 }
 @media screen and (max-width:400px){
+    .container-button-list-item-wpp{
+        right: 45px;
+    }
     .list-phone{
         width: 20px;
         height: 20px;

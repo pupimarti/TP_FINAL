@@ -42,10 +42,10 @@ export default function Login() {
       });
   };
 
-  const signInUser = () => {
-    setMail("user@user.com");
-    setPassowrd("user1234");
-  };
+  // const signInUser = () => {
+  //   setMail("user@user.com");
+  //   setPassowrd("user1234");
+  // };
 
   return (
     <form onSubmit={(e) => handleLoginMail(e)}>
@@ -91,7 +91,7 @@ export default function Login() {
           </Link>
         </div>
         )}
-        <button onClick={signInUser}>ingresar como usuario</button>
+        {/* <button onClick={signInUser}>ingresar como usuario</button> */}
       </div>
     </form>
   );

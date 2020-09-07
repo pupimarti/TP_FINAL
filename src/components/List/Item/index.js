@@ -30,13 +30,24 @@ function Item(props) {
         </div>
       </Link>
       {props.phone && (
-        <a
-          href={"tel:+549" + props.phone}
-          className="container-button-list-item"
-        >
-          <WhatsApp className="list-wpp" />
-          <Phone className="list-phone" />
-        </a>
+        <div>
+          <a
+            href={"tel:+549" + props.phone}
+            className="container-button-list-item"
+          >
+            <Phone className="list-phone" />
+          </a>
+          <a
+            href={
+              "https://api.whatsapp.com/send?phone=[+549][ " + props.phone + "]"
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+            className="container-button-list-item-wpp"
+          >
+            <WhatsApp className="list-wpp" />
+          </a>
+        </div>
       )}
     </div>
   );
