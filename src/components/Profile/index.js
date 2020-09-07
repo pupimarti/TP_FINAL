@@ -178,7 +178,7 @@ export default function Profile() {
                 href={
                   "https://api.whatsapp.com/send?text=" +
                   data.name.replace(/\s/g, "%20") +
-                  "%20https%3A%2F%2Fdolores-pide.com.ar%2F%23%2F" +
+                  "%20https%3A%2F%pinamar-pide.web.app%2F%23%2F" +
                   id +
                   "%20"
                 }

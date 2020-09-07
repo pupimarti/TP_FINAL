@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+.circle-fullbox{
+	height: 100%;
+}
+
 .circleG{
 	background-color:rgb(255,255,255);
 	float:left;
