@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/auth";
 
 const config = {
   apiKey: "AIzaSyDhlOiJG6Zx1bcqUP2EkKJ2MLFv1vLgd4k",
@@ -12,6 +13,34 @@ const config = {
 };
 
 const app = firebase.initializeApp(config);
+
+const refUsers = app.firestore().collection("users");
+
+export const getAccount = async () => {
+  const uid = app.auth().currentUser.uid;
+  if (!uid) return null;
+  return refUsers
+    .doc(uid)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        return {
+          ...doc.data(),
+          uid: doc.id,
+        };
+      }
+      return null;
+    })
+    .catch(() => {
+      return null;
+    });
+};
+export const SignOut = () => {
+  app
+    .auth()
+    .signOut()
+    .catch((e) => console.log(e));
+};
 
 export const getPlaces = (type) => {
   return app
