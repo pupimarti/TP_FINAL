@@ -35,6 +35,7 @@ export const getAccount = async () => {
       return null;
     });
 };
+
 export const SignOut = () => {
   app
     .auth()
