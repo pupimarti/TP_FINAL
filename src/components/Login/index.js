@@ -2,21 +2,67 @@ import React, { useState } from "react";
 import "./css.css";
 import { Link } from "react-router-dom";
 
+//firebase
+import app from "firebaseController";
+import Loading from "components/Loading";
+
 export default function Login() {
   const [mail, setMail] = useState("");
   const [password, setPassowrd] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState(null);
+
+  const getError = (e) => {
+    if (e) {
+      switch (e.code) {
+        case "auth/user-not-found":
+          return "El e-mail introducido no pertenece a ninguna cuenta.";
+        case "auth/wrong-password":
+          return "Tu contraseña no es correcta. Vuelve a comprobarla.";
+        case "auth/user-disabled":
+          return "Su cuenta fue deshabilitada.";
+        default:
+          return "Usuario o contraseña incorrectos.";
+      }
+    }
+    return "";
+  };
+
+  const handleLoginMail = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    app
+      .auth()
+      .signInWithEmailAndPassword(mail, password)
+      .catch((e) => {
+        setLoading(false);
+        setError(getError(e));
+      });
+  };
+
+  const signInUser = () => {
+    setMail("user@user.com");
+    setPassowrd("user1234");
+  };
+
   return (
-    <form>
+    <form onSubmit={(e) => handleLoginMail(e)}>
       <div className="login">
         <Link to="/" className="login-header">
           <div className="back"></div>
           <h1>PINAMAR-PIDE</h1>
         </Link>
+        {loading ? (
+          <div className="login-box login-box-loading">
+            <Loading fullBox/>
+          </div>
+        ) : (
         <div className="login-box">
           <img src={require("img/logo.png")} alt="avatar" className="avatar" />
           <h1>Iniciar Sesión</h1>
-
+          {error && <p className="message-error">{error}</p>}
           <div className="textbox">
             <i className="fas fa-user" />
             <input
@@ -44,6 +90,8 @@ export default function Login() {
             <p>No tengo una cuenta</p>
           </Link>
         </div>
+        )}
+        <button onClick={signInUser}>ingresar como usuario</button>
       </div>
     </form>
   );
