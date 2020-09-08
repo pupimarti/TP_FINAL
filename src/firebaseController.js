@@ -36,6 +36,16 @@ export const getAccount = async () => {
     });
 };
 
+export const createAccount = (email, password) => {
+  return app
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .catch((e) => {
+      console.log(e);
+      throw new Error(e.code);
+    });
+};
+
 export const SignOut = () => {
   app
     .auth()
@@ -62,7 +72,7 @@ export const getPlaces = (type) => {
 export async function getPlace(id) {
   const session_storage = JSON.parse(window.sessionStorage.getItem(id));
   if (session_storage) return session_storage;
-  
+
   const db = firebase.firestore();
   const db_get = await db.collection("places").doc(id).get();
   if (db_get.exists) {
