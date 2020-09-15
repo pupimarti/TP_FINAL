@@ -3,9 +3,10 @@ import "./css.css";
 
 import { Link } from "react-router-dom";
 import logo from "img/logo-completo.png";
+import Loading from "components/Loading";
+import { editProfile } from "firebaseController";
 
 export default function Edit() {
-  const [data] = useState("loading");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
@@ -13,6 +14,45 @@ export default function Edit() {
   const [fb, setFb] = useState("");
   const [insta, setInsta] = useState("");
   const [category, setCategory] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  const handleEditProfile = () => {
+    setLoading(true);
+    editProfile({
+      name,
+      address,
+      phone,
+      instagram: insta,
+      facebook: fb,
+      whatsapp: wpp,
+      category,
+    })
+      .then(() => {
+        alert('modificado con exito');
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        alert('error al modificar')
+        setLoading(false);
+      });
+  };
+
+  if (loading)
+    return (
+      <div className="container-profile">
+        <header className="navbar">
+          <Link to="/" className="container-back">
+            <div className="back"></div>
+          </Link>
+          <Link to="/">
+            <img src={logo} alt="logo" className="navbar-logo" />
+          </Link>
+        </header>
+        <Loading />
+      </div>
+    );
 
   return (
     <div className="container-profile">
@@ -29,27 +69,17 @@ export default function Edit() {
         <div className="profile-container-main">
           <h2 className="profile-name">Editar</h2>
         </div>
-        <div className="container-open">
-          {data.send === "encargue" && (
-            <>
-              <p className="profile-state-send state-encargue">
-                SÓLO ENCARGUE PREVIO
-              </p>
-              <p className="info-encargue">
-                Los lugares con 'sólo encargue previo' realizan envíos
-                determinados días con previo encargue
-              </p>
-            </>
-          )}
-        </div>
         <div>
-        <select 
-        className="profile-select"
-        name="um" 
-        value={category} 
-        onChange={e => setCategory(e.target.value)}
-        >
-            <option value="categorie" style={{ color: "rgba(34, 36, 38, 0.247)" }}>
+          <select
+            className="profile-select"
+            name="um"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option
+              value="categorie"
+              style={{ color: "rgba(34, 36, 38, 0.247)" }}
+            >
               Seleccionar categoria
             </option>
             <option value="Comida">Comida</option>
@@ -64,7 +94,7 @@ export default function Edit() {
             type="text"
             value={name}
             placeholder="Nombre"
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div>
@@ -74,7 +104,7 @@ export default function Edit() {
             type="text"
             value={address}
             placeholder="Dirección"
-            onChange={e => setAddress(e.target.value)}
+            onChange={(e) => setAddress(e.target.value)}
           />
         </div>
         <div>
@@ -84,7 +114,7 @@ export default function Edit() {
             type="text"
             value={phone}
             placeholder="Teléfono"
-            onChange={e => setPhone(e.target.value)}
+            onChange={(e) => setPhone(e.target.value)}
           />
         </div>
         <div>
@@ -94,7 +124,7 @@ export default function Edit() {
             type="text"
             value={wpp}
             placeholder="Whatsapp"
-            onChange={e => setWpp(e.target.value)}
+            onChange={(e) => setWpp(e.target.value)}
           />
         </div>
         <div>
@@ -104,7 +134,7 @@ export default function Edit() {
             type="text"
             value={fb}
             placeholder="Usuario facebook"
-            onChange={e => setFb(e.target.value)}
+            onChange={(e) => setFb(e.target.value)}
           />
         </div>
         <div>
@@ -114,12 +144,18 @@ export default function Edit() {
             type="text"
             value={insta}
             placeholder="Usuario instagram"
-            onChange={e => setInsta(e.target.value)}
+            onChange={(e) => setInsta(e.target.value)}
           />
         </div>
       </div>
-      <button className="button">Atrás</button>
-      <button className="button">Guardar</button>
+      <div className="container-button-profile">
+        <button className="button" onClick={handleEditProfile}>
+          Guardar cambios
+        </button>
+        <Link to="/" className="button transparent">
+          Atrás
+        </Link>
+      </div>
     </div>
   );
 }

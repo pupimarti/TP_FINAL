@@ -99,6 +99,10 @@ input[type="password"] {
   background-color: #5282d0;
   color: white;
   transition: all .3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
 }
 
 .button:hover {

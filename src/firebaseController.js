@@ -56,6 +56,7 @@ export const editProfile = async ({
   instagram = "",
   facebook = "",
   whatsapp = "",
+  category = "comida",
   img = null,
 }) => {
   const uid = app.auth().currentUser.uid;
