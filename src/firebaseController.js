@@ -14,12 +14,12 @@ const config = {
 
 const app = firebase.initializeApp(config);
 
-const refUsers = app.firestore().collection("users");
+const refPlaces = app.firestore().collection("places");
 
 export const getAccount = async () => {
   const uid = app.auth().currentUser.uid;
   if (!uid) return null;
-  return refUsers
+  return refPlaces
     .doc(uid)
     .get()
     .then((doc) => {
@@ -73,8 +73,7 @@ export async function getPlace(id) {
   const session_storage = JSON.parse(window.sessionStorage.getItem(id));
   if (session_storage) return session_storage;
 
-  const db = firebase.firestore();
-  const db_get = await db.collection("places").doc(id).get();
+  const db_get = await refPlaces.doc(id).get();
   if (db_get.exists) {
     window.sessionStorage.setItem(id, JSON.stringify(db_get.data()));
     const place = db_get.data();

@@ -9,7 +9,8 @@ import Profile from "components/Profile";
 import Login from "components/Login";
 import Register from "components/Register";
 import UserContext from "components/Context/UserContext";
-import app, { SignOut } from "firebaseController";
+import app from "firebaseController";
+import Account from "components/Account";
 
 function App() {
   const HeightContentApp = {
@@ -33,10 +34,7 @@ function App() {
         <div style={HeightContentApp} className="content-app">
           <Switch>
             <Route path="/">
-              <div>
-                <h1>Bienvenido {user.email}</h1>
-                <button onClick={SignOut}>Cerrar sesion</button>
-              </div>
+              <Account/>
             </Route>
           </Switch>
         </div>
