@@ -52,7 +52,7 @@ export default function Login() {
       <div className="login">
         <Link to="/" className="login-header">
           <div className="back"></div>
-          <h1>PINAMAR-PIDE</h1>
+          <h1 className="login-pc">PINAMAR-PIDE</h1>
         </Link>
         {loading ? (
           <div className="login-box login-box-loading">

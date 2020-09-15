@@ -55,7 +55,7 @@ export default function Login() {
       <div className="register">
         <Link to="/" className="register-header">
           <div className="back"></div>
-          <h1>PINAMAR-PIDE</h1>
+          <h1 className="login-pc">PINAMAR-PIDE</h1>
         </Link>
 
         {loading ? (
