@@ -7,7 +7,9 @@
 
 .login-header {
   display: flex;
-  align-self: center;
+  width: 100%;
+  margin: 0 auto;
+  justify-items: center;
 }
 
 .login .back {
@@ -35,7 +37,6 @@
 .avatar {
   width: 80px;
   height: 100px;
-  border-radius: 50%;
   position: absolute;
   top: -50px;
   left: calc(50% - 45px);
@@ -97,6 +98,7 @@ input[type="password"] {
   border: none;
   background-color: #5282d0;
   color: white;
+  transition: all .3s ease-in-out;
 }
 
 .button:hover {
@@ -107,4 +109,21 @@ input[type="password"] {
   color: white;
   background-color: rgba(255, 255, 255, 0.05);
   border: 2px solid #5282d0;
+}
+
+@media screen and (max-width: 500px) {
+  .login-box {
+    background: none;
+    position: relative;
+  }
+  .login-pc {
+    display: none;
+  }
+
+  .login-header {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    justify-items: left;
+  }
 }
