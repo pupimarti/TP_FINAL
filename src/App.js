@@ -12,6 +12,7 @@ import UserContext from "components/Context/UserContext";
 import app from "firebaseController";
 import Account from "components/Account";
 import Edit from "components/Account/Edit";
+import Loading from "components/Loading";
 
 function App() {
   const HeightContentApp = {
@@ -29,13 +30,20 @@ function App() {
     return () => authChanged();
   }, [setUser]);
 
+  if (user === "loading")
+    return (
+      <div style={HeightContentApp} className="content-app">
+        <Loading />
+      </div>
+    );
+
   if (user) {
     return (
       <HashRouter basename="/">
         <div style={HeightContentApp} className="content-app">
           <Switch>
             <Route path="/">
-              <Account/>
+              <Account />
             </Route>
             <Route exact path="/edit">
             <Edit />
