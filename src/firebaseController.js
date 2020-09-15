@@ -36,6 +36,50 @@ export const getAccount = async () => {
     });
 };
 
+const uploadImg = async (url, img) => {
+  const storage = app.storage().ref().child(url);
+  return await storage
+    .put(img)
+    .then(() => {
+      return true;
+    })
+    .catch(function (error) {
+      console.log(error);
+      throw new Error("upload-img-error");
+    });
+};
+
+export const editProfile = async ({
+  name = "",
+  address = "",
+  phone = 0,
+  instagram = "",
+  facebook = "",
+  whatsapp = "",
+  img = null,
+}) => {
+  const uid = app.auth().currentUser.uid;
+  if (!uid) return false;
+  try {
+    if (img) await uploadImg("/" + uid, img);
+    
+    await app.firestore().collection("places").doc(uid).set(
+      {
+        name,
+        address,
+        phone,
+        instagram,
+        facebook,
+        whatsapp,
+      },
+      { merge: true }
+    );
+  } catch (e) {
+    console.log(e);
+    throw new Error("no permisos");
+  }
+};
+
 export const createAccount = (email, password) => {
   return app
     .auth()
