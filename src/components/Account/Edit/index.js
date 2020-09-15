@@ -12,6 +12,7 @@ export default function Edit() {
   const [wpp, setWpp] = useState("");
   const [fb, setFb] = useState("");
   const [insta, setInsta] = useState("");
+  const [category, setCategory] = useState("");
 
   return (
     <div className="container-profile">
@@ -40,6 +41,21 @@ export default function Edit() {
               </p>
             </>
           )}
+        </div>
+        <div>
+        <select 
+        className="profile-select"
+        name="um" 
+        value={category} 
+        onChange={e => setCategory(e.target.value)}
+        >
+            <option value="categorie" style={{ color: "rgba(34, 36, 38, 0.247)" }}>
+              Seleccionar categoria
+            </option>
+            <option value="Comida">Comida</option>
+            <option value="Helado">Helado</option>
+            <option value="Bebidas">Bebidas</option>
+          </select>
         </div>
         <div>
           <input
@@ -102,6 +118,8 @@ export default function Edit() {
           />
         </div>
       </div>
+      <button className="button">Atrás</button>
+      <button className="button">Guardar</button>
     </div>
   );
 }
