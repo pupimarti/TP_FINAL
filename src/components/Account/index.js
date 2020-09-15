@@ -5,6 +5,7 @@ import UserContext from "components/Context/UserContext";
 import { getAccount, SignOut } from "firebaseController";
 import logo from "img/logo-completo.png";
 import Loading from "components/Loading";
+import { Link } from "react-router-dom";
 
 export default function Account() {
   const { user } = useContext(UserContext);
@@ -57,9 +58,9 @@ export default function Account() {
       <header className="main-content-logo">
         <img src={logo} alt="logo" className="main-logo" />
       </header>
-      <button className="button" onClick={SignOut}>
+      <Link to="/edit" className="button">
         Editar perfil
-      </button>
+      </Link>
       <button className="button transparent" onClick={SignOut}>
         Cerrar sesión
       </button>
