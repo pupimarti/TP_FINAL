@@ -2,9 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import "./css.css";
 
 import UserContext from "components/Context/UserContext";
-
-import { Link } from 'react-router-dom';
 import { getAccount, SignOut } from "firebaseController";
+import logo from "img/logo-completo.png";
 import Loading from "components/Loading";
 
 export default function Account() {
@@ -24,19 +23,46 @@ export default function Account() {
 
   if (account === "loading") return <Loading />;
 
+  if (!account)
+    return (
+      <div className="content-account fade-in">
+        <header className="main-content-logo">
+          <img src={logo} alt="logo" className="main-logo" />
+        </header>
+        <p className="account-message">{user.email}</p>
+        <p className="account-message">
+          Cuenta creada, espera a que se te autorice para subir tu perfil.
+        </p>
+        <button className="button" onClick={SignOut}>
+          Cerrar sesión
+        </button>
+      </div>
+    );
+
   if (account === "error")
     return (
-      <div>
+      <div className="content-account fade-in">
+        <header className="main-content-logo">
+          <img src={logo} alt="logo" className="main-logo" />
+        </header>
         <p>Ocurrió un error al buscar su cuenta</p>
-        <button onClick={() => setAccount("loading")}>Reintentar</button>
+        <button className="button" onClick={() => setAccount("loading")}>
+          Reintentar
+        </button>
       </div>
     );
 
   return (
-    <div>
-      <h1>Bienvenido {user.email}</h1>
-      <Link to="/edit">Editar</Link>
-      <button onClick={SignOut}>Cerrar sesion</button>
+    <div className="content-account fade-in">
+      <header className="main-content-logo">
+        <img src={logo} alt="logo" className="main-logo" />
+      </header>
+      <button className="button" onClick={SignOut}>
+        Editar perfil
+      </button>
+      <button className="button transparent" onClick={SignOut}>
+        Cerrar sesión
+      </button>
     </div>
   );
 }

@@ -1,0 +1,12 @@
+.content-account {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  min-height: 100%;
+  opacity: 0;
+}
+
+.account-message {
+  text-align: center;
+}

@@ -42,9 +42,15 @@ function App() {
       <HashRouter basename="/">
         <div style={HeightContentApp} className="content-app">
           <Switch>
+<<<<<<< HEAD
           <Route exact path="/edit">
             <Edit />
           </Route>
+=======
+            <Route exact path="/edit">
+              <Edit />
+            </Route>
+>>>>>>> b4ec55f9b9ead6c8af90a8b8c9987274e1d0830d
             <Route path="/">
               <Account />
             </Route>
