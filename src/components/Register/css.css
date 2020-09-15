@@ -91,14 +91,3 @@ input[type="password"] {
 .register-box p:hover {
   color: #5282d0;
 }
-.register .button {
-  height: 45px;
-  border-radius: 0.3em;
-  border: none;
-  background-color: #5282d0;
-  color: white;
-}
-
-.register .button:hover {
-  opacity: 0.8;
-}
