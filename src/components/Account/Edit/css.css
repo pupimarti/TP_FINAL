@@ -1,0 +1,138 @@
+.container-profile{
+    margin: 0 auto;
+    width: 600px;
+    max-width: 95vw;
+    padding-top: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.profile-image{
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+}
+
+.profile-image-container-loading{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container-main{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-name{
+    font-size: 24px;
+}
+
+.profile-ubication{
+    font-size: 15px;
+    color: rgba(255, 255, 255, .6)
+}
+
+.profile-ubication:hover{
+    opacity: .8;
+}
+
+.profile-state{
+    font-size: 14px;
+    width: 100px;
+    margin: 0 auto;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.profile-state-send{
+    font-size: 14px;
+    width: 220px;
+    margin: 0 auto;
+    font-weight: 500;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.info-encargue{
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.profile-call{
+    display: flex;
+    width: 250px;
+    margin: 15px auto;
+    align-items: center;
+    background-color: #00000066;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.profile-call:hover{
+  opacity: .8;
+}
+
+.container-red{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    width: 50px;
+    height: 50px;
+}
+
+.profile-phone{
+    width: 20px;
+    height: 20px;
+    padding-right:10px;
+}
+
+.profile-wpp{
+    display: flex;
+    width: 250px;
+    margin: 15px auto;
+    align-items: center;
+    background-color: #25d365d0;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.share-icon{
+    border: 2px solid #FAFAFA;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.share-icon path{
+    fill:#FAFAFA;
+}
+
+.container-redes{
+    margin: 10px auto;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.profile-red{
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+}
+
+.profile-desc{
+    width: 350px;
+    max-width: 95vw;
+    margin: 0 auto;
+    font-size: 16px;
+    margin-bottom: 15px;
+}

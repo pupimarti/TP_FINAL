@@ -11,6 +11,7 @@ import Register from "components/Register";
 import UserContext from "components/Context/UserContext";
 import app from "firebaseController";
 import Account from "components/Account";
+import Edit from "components/Account/Edit";
 
 function App() {
   const HeightContentApp = {
@@ -36,6 +37,9 @@ function App() {
             <Route path="/">
               <Account/>
             </Route>
+            <Route exact path="/edit">
+            <Edit />
+          </Route>
           </Switch>
         </div>
       </HashRouter>
