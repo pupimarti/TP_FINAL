@@ -34,9 +34,9 @@ export default function Account() {
         <p className="account-message">
           Cuenta creada, espera a que se te autorice para subir tu perfil.
         </p>
-        <button className="button" onClick={SignOut}>
-          Cerrar sesión
-        </button>
+      <button className="button transparent" onClick={SignOut}>
+        Cerrar sesión
+      </button>
       </div>
     );
 

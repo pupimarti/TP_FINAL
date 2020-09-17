@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./css.css";
 
+import ImageUploader from 'react-images-upload';
 import { Link } from "react-router-dom";
 import logo from "img/logo-completo.png";
 import Loading from "components/Loading";
@@ -16,6 +17,11 @@ export default function Edit() {
   const [category, setCategory] = useState("");
 
   const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState([0])
+
+  const handleImage = (picture) => {
+    setImage(picture)
+  }
 
   const handleEditProfile = () => {
     setLoading(true);
@@ -53,7 +59,7 @@ export default function Edit() {
         <Loading />
       </div>
     );
-
+console.log(image)
   return (
     <div className="container-profile">
       <header className="navbar">
@@ -64,10 +70,18 @@ export default function Edit() {
           <img src={logo} alt="logo" className="navbar-logo" />
         </Link>
       </header>
-
+      <ImageUploader
+                fileContainerStyle = {{background: "transparent"}}
+                withIcon={true}
+                withPreview={true}
+                buttonText='Subir logo'
+                onChange={handleImage}
+                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                maxFileSize={5242880}
+            />
       <div className="profile-container-place fade-in">
         <div className="profile-container-main">
-          <h2 className="profile-name">Editar</h2>
+          <h2 className="profile-name">Perfil</h2>
         </div>
         <div>
           <select
