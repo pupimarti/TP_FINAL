@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "./css.css";
 
 import UserContext from "components/Context/UserContext";
@@ -8,9 +8,7 @@ import Loading from "components/Loading";
 import { Link } from "react-router-dom";
 
 export default function Account() {
-  const { user } = useContext(UserContext);
-
-  const [account, setAccount] = useState("loading");
+  const { user, account, setAccount } = useContext(UserContext);
 
   useEffect(() => {
     if (account === "loading")
@@ -20,7 +18,7 @@ export default function Account() {
           console.log(e);
           setAccount("error");
         });
-  }, [account]);
+  }, [account, setAccount]);
 
   if (account === "loading") return <Loading />;
 
@@ -34,9 +32,9 @@ export default function Account() {
         <p className="account-message">
           Cuenta creada, espera a que se te autorice para subir tu perfil.
         </p>
-      <button className="button transparent" onClick={SignOut}>
-        Cerrar sesión
-      </button>
+        <button className="button transparent" onClick={SignOut}>
+          Cerrar sesión
+        </button>
       </div>
     );
 
@@ -46,7 +44,7 @@ export default function Account() {
         <header className="main-content-logo">
           <img src={logo} alt="logo" className="main-logo" />
         </header>
-        <p>Ocurrió un error al buscar su cuenta</p>
+        <p className="account-message">Ocurrió un error al buscar su cuenta</p>
         <button className="button" onClick={() => setAccount("loading")}>
           Reintentar
         </button>
@@ -58,9 +56,20 @@ export default function Account() {
       <header className="main-content-logo">
         <img src={logo} alt="logo" className="main-logo" />
       </header>
-      <Link to="/edit" className="button">
-        Editar perfil
-      </Link>
+      {account.create ? (
+        <>
+          <p className="account-message">
+            ¡Su cuenta ha sido activada! Ya puedes crear tu perfil.
+          </p>
+          <Link to="/create" className="button">
+            Crear mi perfil
+          </Link>
+        </>
+      ) : (
+        <Link to="/edit" className="button">
+          Editar perfil
+        </Link>
+      )}
       <button className="button transparent" onClick={SignOut}>
         Cerrar sesión
       </button>

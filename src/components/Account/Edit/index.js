@@ -1,27 +1,36 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./css.css";
 
-import ImageUploader from 'react-images-upload';
-import { Link } from "react-router-dom";
+import ImageUploader from "react-images-upload";
+import { Link, useHistory } from "react-router-dom";
 import logo from "img/logo-completo.png";
 import Loading from "components/Loading";
 import { editProfile } from "firebaseController";
+import UserContext from "components/Context/UserContext";
 
-export default function Edit() {
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [wpp, setWpp] = useState("");
-  const [fb, setFb] = useState("");
-  const [insta, setInsta] = useState("");
-  const [category, setCategory] = useState("");
+export default function Edit({ create = false }) {
+  const { account } = useContext(UserContext);
+
+  const history = useHistory();
+
+  if (account === "loading" || !account || account === "error")
+    history.push("/");
+
+  const [name, setName] = useState(account.name || "");
+  const [address, setAddress] = useState(account.address || "");
+  const [phone, setPhone] = useState(account.phone || "");
+  const [wpp, setWpp] = useState(account.whatsapp || "");
+  const [fb, setFb] = useState(account.facebook || "");
+  const [insta, setInsta] = useState(account.instagram || "");
+  const [category, setCategory] = useState(account.category || "");
 
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState([0])
+  
+  const [image, setImage] = useState(null);
 
   const handleImage = (picture) => {
-    setImage(picture)
-  }
+    setImage(picture);
+  };
 
   const handleEditProfile = () => {
     setLoading(true);
@@ -32,15 +41,16 @@ export default function Edit() {
       instagram: insta,
       facebook: fb,
       whatsapp: wpp,
-      category,
+      category: create ? category : null,
+      image,
     })
       .then(() => {
-        alert('modificado con exito');
+        alert("modificado con exito");
         setLoading(false);
       })
       .catch((e) => {
         console.log(e);
-        alert('error al modificar')
+        alert("error al modificar");
         setLoading(false);
       });
   };
@@ -59,7 +69,6 @@ export default function Edit() {
         <Loading />
       </div>
     );
-console.log(image)
   return (
     <div className="container-profile">
       <header className="navbar">
@@ -71,14 +80,14 @@ console.log(image)
         </Link>
       </header>
       <ImageUploader
-                fileContainerStyle = {{background: "transparent"}}
-                withIcon={true}
-                withPreview={true}
-                buttonText='Subir logo'
-                onChange={handleImage}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                maxFileSize={5242880}
-            />
+        fileContainerStyle={{ background: "transparent" }}
+        withIcon={true}
+        withPreview={true}
+        buttonText="Subir logo"
+        onChange={handleImage}
+        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+        maxFileSize={5242880}
+      />
       <div className="profile-container-place fade-in">
         <div className="profile-container-main">
           <h2 className="profile-name">Perfil</h2>
@@ -87,6 +96,7 @@ console.log(image)
           <select
             className="profile-select"
             name="um"
+            disabled={!create}
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
@@ -96,9 +106,9 @@ console.log(image)
             >
               Seleccionar categoria
             </option>
-            <option value="Comida">Comida</option>
-            <option value="Helado">Helado</option>
-            <option value="Bebidas">Bebidas</option>
+            <option value="comida">Comida</option>
+            <option value="helado">Helado</option>
+            <option value="bebidas">Bebidas</option>
           </select>
         </div>
         <div>
@@ -164,7 +174,7 @@ console.log(image)
       </div>
       <div className="container-button-profile">
         <button className="button" onClick={handleEditProfile}>
-          Guardar cambios
+          {create ? "Crear perfil" : "Guardar cambios"}
         </button>
         <Link to="/" className="button transparent">
           Atrás

@@ -56,14 +56,14 @@ export const editProfile = async ({
   instagram = "",
   facebook = "",
   whatsapp = "",
-  category = "comida",
+  category = null,
   img = null,
 }) => {
   const uid = app.auth().currentUser.uid;
   if (!uid) return false;
   try {
     if (img) await uploadImg("/" + uid, img);
-    
+
     await app.firestore().collection("places").doc(uid).set(
       {
         name,
@@ -72,9 +72,19 @@ export const editProfile = async ({
         instagram,
         facebook,
         whatsapp,
+        category,
+        create: false,
       },
       { merge: true }
     );
+
+    if (category) {
+      await app.firestore().collection(category).doc(uid).set({
+        name,
+        address,
+        phone,
+      });
+    }
   } catch (e) {
     console.log(e);
     throw new Error("no permisos");

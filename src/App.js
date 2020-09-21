@@ -45,6 +45,9 @@ function App() {
             <Route exact path="/edit">
               <Edit />
             </Route>
+            <Route exact path="/create">
+              <Edit create />
+            </Route>
             <Route path="/">
               <Account />
             </Route>
