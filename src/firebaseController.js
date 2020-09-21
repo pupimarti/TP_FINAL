@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/storage";
 import "firebase/auth";
 
 const config = {
@@ -61,8 +62,9 @@ export const editProfile = async ({
 }) => {
   const uid = app.auth().currentUser.uid;
   if (!uid) return false;
+
   try {
-    if (img) await uploadImg("/" + uid, img);
+    if (img && img.length > 0) await uploadImg("/logos/" + uid + ".jpg", img[0]);
 
     await app.firestore().collection("places").doc(uid).set(
       {

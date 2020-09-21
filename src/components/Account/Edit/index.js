@@ -7,6 +7,7 @@ import logo from "img/logo-completo.png";
 import Loading from "components/Loading";
 import { editProfile } from "firebaseController";
 import UserContext from "components/Context/UserContext";
+import { Img } from "react-image";
 
 export default function Edit({ create = false }) {
   const { account } = useContext(UserContext);
@@ -25,10 +26,11 @@ export default function Edit({ create = false }) {
   const [category, setCategory] = useState(account.category || "");
 
   const [loading, setLoading] = useState(false);
-  
+
   const [image, setImage] = useState(null);
 
   const handleImage = (picture) => {
+    console.log(picture);
     setImage(picture);
   };
 
@@ -42,11 +44,12 @@ export default function Edit({ create = false }) {
       facebook: fb,
       whatsapp: wpp,
       category: create ? category : null,
-      image,
+      img: image,
     })
       .then(() => {
         alert("modificado con exito");
         setLoading(false);
+        history.push("/");
       })
       .catch((e) => {
         console.log(e);
@@ -83,11 +86,28 @@ export default function Edit({ create = false }) {
         fileContainerStyle={{ background: "transparent" }}
         withIcon={true}
         withPreview={true}
+        singleImage
         buttonText="Subir logo"
         onChange={handleImage}
         imgExtension={[".jpg", ".gif", ".png", ".gif"]}
         maxFileSize={5242880}
       />
+      {!create && (
+        <Img
+          src={[
+            "https://firebasestorage.googleapis.com/v0/b/pinamar-pide.appspot.com/o/logos%2F" +
+              account.uid +
+              ".jpg?alt=media",
+            "https://firebasestorage.googleapis.com/v0/b/pinamar-pide.appspot.com/o/telefono.svg?alt=media",
+          ]}
+          className="profile-image"
+          loader={
+            <div className="profile-image-container-loading">
+              <Loading small />
+            </div>
+          }
+        />
+      )}
       <div className="profile-container-place fade-in">
         <div className="profile-container-main">
           <h2 className="profile-name">Perfil</h2>
