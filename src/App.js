@@ -48,6 +48,19 @@ function App() {
             <Route exact path="/create">
               <Edit create />
             </Route>
+            <Route exact path="/comida">
+              <List type="comida" />
+            </Route>
+            <Route exact path="/helado">
+              <List type="helado" />
+            </Route>
+            <Route exact path="/bebidas">
+              <List type="bebidas" />
+            </Route>
+            <Route exact path="/main" component={Main} />
+            <Route exact path="/:id">
+              <Profile />
+            </Route>
             <Route path="/">
               <Account />
             </Route>

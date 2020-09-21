@@ -57,6 +57,7 @@ export const editProfile = async ({
   instagram = "",
   facebook = "",
   whatsapp = "",
+  desc,
   category = null,
   img = null,
 }) => {
@@ -74,6 +75,7 @@ export const editProfile = async ({
         instagram,
         facebook,
         whatsapp,
+        desc,
         category,
         create: false,
       },

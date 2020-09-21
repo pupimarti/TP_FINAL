@@ -70,6 +70,9 @@ export default function Account() {
           Editar perfil
         </Link>
       )}
+      <Link to="/main" className="button">
+        Ver listado
+      </Link>
       <button className="button transparent" onClick={SignOut}>
         Cerrar sesión
       </button>

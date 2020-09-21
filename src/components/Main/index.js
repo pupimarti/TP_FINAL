@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./css.css";
 
 import logo from "img/logo-completo.png";
 
 import Circle from "components/Circle";
 import { Link } from "react-router-dom";
+import UserContext from "components/Context/UserContext";
 
 function Main() {
-  
+  const { user } = useContext(UserContext);
+
   const sections = [
     {
       name: "Comida",
@@ -19,8 +21,8 @@ function Main() {
     },
     {
       name: "Bebidas",
-      url: "/bebidas"
-    }
+      url: "/bebidas",
+    },
   ];
 
   return (
@@ -29,16 +31,18 @@ function Main() {
         <img src={logo} alt="logo" className="main-logo" />
       </header>
       <div className="content-sections">
-          {sections &&
-            sections.map((s, i) => (
-              <Circle key={i} name={s.name} url={s.url} />
-            ))}
+        {sections &&
+          sections.map((s, i) => <Circle key={i} name={s.name} url={s.url} />)}
       </div>
-      <footer className="container-footer">
-      <Link to="/login" className="footer">Para publicar tu comercio haz click aquí.</Link>
-      </footer>
+      {!user && (
+        <footer className="container-footer">
+          <Link to="/login" className="footer">
+            Para publicar tu comercio haz click aquí.
+          </Link>
+        </footer>
+      )}
     </div>
   );
 }
 
-export default React.memo(Main); 
+export default React.memo(Main);

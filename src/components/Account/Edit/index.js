@@ -10,7 +10,7 @@ import UserContext from "components/Context/UserContext";
 import { Img } from "react-image";
 
 export default function Edit({ create = false }) {
-  const { account } = useContext(UserContext);
+  const { account, setAccount } = useContext(UserContext);
 
   const history = useHistory();
 
@@ -24,6 +24,7 @@ export default function Edit({ create = false }) {
   const [fb, setFb] = useState(account.facebook || "");
   const [insta, setInsta] = useState(account.instagram || "");
   const [category, setCategory] = useState(account.category || "");
+  const [desc, setDesc] = useState(account.desc || "");
 
   const [loading, setLoading] = useState(false);
 
@@ -43,10 +44,20 @@ export default function Edit({ create = false }) {
       instagram: insta,
       facebook: fb,
       whatsapp: wpp,
+      desc,
       category: create ? category : null,
       img: image,
     })
       .then(() => {
+        setAccount({
+          name,
+          address,
+          phone,
+          instagram: insta,
+          facebook: fb,
+          whatsapp: wpp,
+          desc,
+        });
         alert("modificado con exito");
         setLoading(false);
         history.push("/");
@@ -133,7 +144,7 @@ export default function Edit({ create = false }) {
         </div>
         <div>
           <input
-            className="profile-call"
+            className="profile-input"
             name="name"
             type="text"
             value={name}
@@ -143,7 +154,7 @@ export default function Edit({ create = false }) {
         </div>
         <div>
           <input
-            className="profile-call"
+            className="profile-input"
             name="address"
             type="text"
             value={address}
@@ -153,7 +164,7 @@ export default function Edit({ create = false }) {
         </div>
         <div>
           <input
-            className="profile-call"
+            className="profile-input"
             name="phone"
             type="text"
             value={phone}
@@ -163,7 +174,7 @@ export default function Edit({ create = false }) {
         </div>
         <div>
           <input
-            className="profile-call"
+            className="profile-input"
             name="whatsapp"
             type="text"
             value={wpp}
@@ -173,7 +184,7 @@ export default function Edit({ create = false }) {
         </div>
         <div>
           <input
-            className="profile-call"
+            className="profile-input"
             name="facebook"
             type="text"
             value={fb}
@@ -183,12 +194,22 @@ export default function Edit({ create = false }) {
         </div>
         <div>
           <input
-            className="profile-call"
+            className="profile-input"
             name="instagram"
             type="text"
             value={insta}
             placeholder="Usuario instagram"
             onChange={(e) => setInsta(e.target.value)}
+          />
+        </div>
+        <div>
+          <textarea
+            className="profile-input"
+            name="desc"
+            type="text"
+            value={desc}
+            placeholder="Descripción del negocio"
+            onChange={(e) => setDesc(e.target.value)}
           />
         </div>
       </div>
