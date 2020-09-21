@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import "./App.css";
 
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Redirect, Route, Switch } from "react-router-dom";
 
 import Main from "components/Main";
 import List from "components/List";
@@ -58,6 +58,12 @@ function App() {
               <List type="bebidas" />
             </Route>
             <Route exact path="/main" component={Main} />
+            <Route exact path="/login">
+              <Redirect to="/" />
+            </Route>
+            <Route exact path="/register">
+              <Redirect to="/" />
+            </Route>
             <Route exact path="/:id">
               <Profile />
             </Route>
