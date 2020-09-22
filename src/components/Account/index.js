@@ -20,6 +20,11 @@ export default function Account() {
         });
   }, [account, setAccount]);
 
+  const handleSignOut = () => {
+    setAccount("loading");
+    SignOut();
+  };
+
   if (account === "loading") return <Loading />;
 
   if (!account)
@@ -73,7 +78,7 @@ export default function Account() {
       <Link to="/main" className="button">
         Ver listado
       </Link>
-      <button className="button transparent" onClick={SignOut}>
+      <button className="button transparent" onClick={handleSignOut}>
         Cerrar sesión
       </button>
     </div>
