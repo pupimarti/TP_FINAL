@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
 import "firebase/auth";
+import 'firebase/analytics';
 
 const config = {
   apiKey: "AIzaSyDhlOiJG6Zx1bcqUP2EkKJ2MLFv1vLgd4k",
@@ -11,6 +12,12 @@ const config = {
   storageBucket: "pinamar-pide.appspot.com",
   messagingSenderId: "268459213561",
   appId: "1:268459213561:web:80b1dc8d0b7e8032cb9828",
+  measurementId: 'G-RR651SJWT4',
+};
+
+export const initializeApp = () => {
+	firebase.initializeApp(config);
+	firebase.analytics();
 };
 
 const app = firebase.initializeApp(config);
@@ -51,6 +58,7 @@ const uploadImg = async (url, img) => {
 };
 
 export const editProfile = async ({
+  
   name = "",
   address = "",
   phone = 0,
@@ -62,6 +70,10 @@ export const editProfile = async ({
   img = null,
 }) => {
   const uid = app.auth().currentUser.uid;
+  firebase.analytics().logEvent('Edit_Profile', {
+		place: name,
+  });
+  
   if (!uid) return false;
 
   try {
@@ -96,6 +108,9 @@ export const editProfile = async ({
 };
 
 export const createAccount = (email, password) => {
+  firebase.analytics().logEvent('createAccount', {
+		email: email,
+	});
   return app
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -113,6 +128,16 @@ export const SignOut = () => {
 };
 
 export const getPlaces = (type) => {
+  const session_storage = JSON.parse(window.sessionStorage.getItem(type));
+	if (session_storage) {
+		firebase.analytics().logEvent('select_category_storage', {
+			category: type,
+		});
+		return session_storage;
+	}
+  firebase.analytics().logEvent('select_category', {
+		category: type,
+	}); 
   return app
     .firestore()
     .collection(type)
@@ -123,6 +148,9 @@ export const getPlaces = (type) => {
       return db_data;
     })
     .catch((e) => {
+      firebase.analytics().logEvent('error_select_category', {
+				category: type,
+			});
       console.log(e);
       throw new Error("Ocurrió un error. Vuelva a intentarlo más tarde.");
     });
