@@ -25,6 +25,7 @@ export default function Edit({ create = false }) {
   const [insta, setInsta] = useState(account.instagram || "");
   const [category, setCategory] = useState(account.category || "");
   const [desc, setDesc] = useState(account.desc || "");
+  const [sunday, setSunday] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -212,6 +213,60 @@ export default function Edit({ create = false }) {
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
+        <h2 className="profile-name">Horarios</h2>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textAlign: "center",
+            justifyContent: "center",
+          }}
+        >
+          <p>Domingo:</p>
+          <select
+            className="schedule-select"
+            name="sunday"
+            value={sunday}
+            onChange={(e) => setSunday(e.target.value)}
+          >
+            <option
+              value="categorie"
+              style={{ color: "rgba(34, 36, 38, 0.247)" }}
+            >
+              Horarios
+            </option>
+            <option value="true">Abierto</option>
+            <option value="false">Cerrado</option>
+          </select>
+        </div>
+        {sunday && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              textAlign: "center",
+              alignItems: "center"
+            }}
+          >
+            <input
+              className="schedule-input"
+              name="desde"
+              type="number"
+              value="1200"
+              placeholder="1200"
+              // onChange={(e) => setInsta(e.target.value)}
+            />
+            <p>a</p>
+            <input
+              className="schedule-input"
+              name="cierre"
+              type="number"
+              value="2300"
+              placeholder="2300"
+              // onChange={(e) => setInsta(e.target.value)}
+            />
+          </div>
+        )}
       </div>
       <div className="container-button-profile">
         <button className="button" onClick={handleEditProfile}>
