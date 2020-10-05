@@ -25,7 +25,11 @@ export default function Edit({ create = false }) {
   const [insta, setInsta] = useState(account.instagram || "");
   const [category, setCategory] = useState(account.category || "");
   const [desc, setDesc] = useState(account.desc || "");
-  const [sunday, setSunday] = useState(false);
+  const [sunday, setSunday] = useState({
+    open: false,
+    from: null,
+    to: null
+  });
 
   const [loading, setLoading] = useState(false);
 
@@ -226,8 +230,8 @@ export default function Edit({ create = false }) {
           <select
             className="schedule-select"
             name="sunday"
-            value={sunday}
-            onChange={(e) => setSunday(e.target.value)}
+            value={sunday.open}
+            onChange={(e) => setSunday({open: e.target.value})}
           >
             <option
               value="categorie"
@@ -239,7 +243,7 @@ export default function Edit({ create = false }) {
             <option value="false">Cerrado</option>
           </select>
         </div>
-        {sunday && (
+        {sunday.open && (
           <div
             style={{
               display: "flex",
@@ -252,18 +256,18 @@ export default function Edit({ create = false }) {
               className="schedule-input"
               name="desde"
               type="number"
-              value="1200"
+              value={sunday.from}
               placeholder="1200"
-              // onChange={(e) => setInsta(e.target.value)}
+              onChange={(e) => setInsta({from: e.target.value})}
             />
             <p>a</p>
             <input
               className="schedule-input"
               name="cierre"
               type="number"
-              value="2300"
+              value={sunday.to}
               placeholder="2300"
-              // onChange={(e) => setInsta(e.target.value)}
+              onChange={(e) => setInsta({to: e.target.value})}
             />
           </div>
         )}
