@@ -32,31 +32,35 @@ export default function Edit({ create = false }) {
     to: null,
   }); */
 
-  const [hayWorkHours, setHayWorkHours] = useState(false);
+  const [hayWorkHours, setHayWorkHours] = useState(
+    account.workHours ? true : false
+  );
 
-  const [workHours, setWorkHours] = useState([
-    {
-      open: false,
-    },
-    {
-      open: false,
-    },
-    {
-      open: false,
-    },
-    {
-      open: false,
-    },
-    {
-      open: false,
-    },
-    {
-      open: false,
-    },
-    {
-      open: false,
-    },
-  ]);
+  const [workHours, setWorkHours] = useState(
+    account.workHours || [
+      {
+        open: false,
+      },
+      {
+        open: false,
+      },
+      {
+        open: false,
+      },
+      {
+        open: false,
+      },
+      {
+        open: false,
+      },
+      {
+        open: false,
+      },
+      {
+        open: false,
+      },
+    ]
+  );
 
   const [loading, setLoading] = useState(false);
 

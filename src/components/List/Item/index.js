@@ -3,11 +3,26 @@ import React from "react";
 import { ReactComponent as Phone } from "img/telefono.svg";
 import { ReactComponent as WhatsApp } from "img/whatsapp.svg";
 
+import placeOpen from 'components/functions/placeOpen';
+
 import { Img } from "react-image";
 import Loading from "components/Loading";
 import { Link } from "react-router-dom";
 
 function Item(props) {
+  const isOpen = () => {
+    if (props.send === "encargue")
+      return <p className="list-state state-encargue">SÓLO ENCARGUE PREVIO</p>;
+    if (props.workHours) {
+      const open = placeOpen(props.workHours);
+      console.log(open);
+      if (open === "no-register") return null;
+      if (open) return <p className="list-state state-open">ABIERTO</p>;
+      else return <p className="list-state state-closed">CERRADO</p>;
+    }
+    return null;
+  };
+
   return (
     <div className="container-list-item">
       <Link to={"/" + props.id} className="list-item ripple">
@@ -27,6 +42,7 @@ function Item(props) {
         <div className="list-container-name-info">
           <h3 className="list-name">{props.name}</h3>
           <p className="list-info">{props.phone}</p>
+          {isOpen()}
         </div>
       </Link>
       {props.phone && (

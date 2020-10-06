@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./css.css";
 import { Link } from "react-router-dom";
 
 //firebase
 import app from "firebaseController";
 import Loading from "components/Loading";
+import UserContext from "components/Context/UserContext";
 
 export default function Login() {
   const [mail, setMail] = useState("");
@@ -13,6 +14,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState(null);
+
+  const { setAccount } = useContext(UserContext);
 
   const getError = (e) => {
     if (e) {
@@ -33,6 +36,7 @@ export default function Login() {
   const handleLoginMail = (e) => {
     e.preventDefault();
     setLoading(true);
+    setAccount("loading");
     app
       .auth()
       .signInWithEmailAndPassword(mail, password)
@@ -56,40 +60,44 @@ export default function Login() {
         </Link>
         {loading ? (
           <div className="login-box login-box-loading">
-            <Loading fullBox/>
+            <Loading fullBox />
           </div>
         ) : (
-        <div className="login-box">
-          <img src={require("img/logo.png")} alt="avatar" className="avatar" />
-          <h1>Iniciar Sesión</h1>
-          {error && <p className="message-error">{error}</p>}
-          <div className="textbox">
-            <i className="fas fa-user" />
-            <input
-              type="email"
-              value={mail}
-              onChange={(e) => setMail(e.target.value)}
-              placeholder="E-mail"
-              className="input"
-              required
+          <div className="login-box">
+            <img
+              src={require("img/logo.png")}
+              alt="avatar"
+              className="avatar"
             />
+            <h1>Iniciar Sesión</h1>
+            {error && <p className="message-error">{error}</p>}
+            <div className="textbox">
+              <i className="fas fa-user" />
+              <input
+                type="email"
+                value={mail}
+                onChange={(e) => setMail(e.target.value)}
+                placeholder="E-mail"
+                className="input"
+                required
+              />
+            </div>
+            <div className="textbox">
+              <i className="fas fa-lock" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassowrd(e.target.value)}
+                placeholder="Contraseña"
+                className="input"
+                required
+              />
+            </div>
+            <input type="submit" className="button" value="Vamos" />
+            <Link to="/register">
+              <p>No tengo una cuenta</p>
+            </Link>
           </div>
-          <div className="textbox">
-            <i className="fas fa-lock" />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassowrd(e.target.value)}
-              placeholder="Contraseña"
-              className="input"
-              required
-            />
-          </div>
-          <input type="submit" className="button" value="Vamos" />
-          <Link to="/register">
-            <p>No tengo una cuenta</p>
-          </Link>
-        </div>
         )}
         {/* <button onClick={signInUser}>ingresar como usuario</button> */}
       </div>
