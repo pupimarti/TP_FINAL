@@ -35,7 +35,8 @@ export const getAccount = async () => {
       }
       return null;
     })
-    .catch(() => {
+    .catch((e) => {
+      console.log(e);
       return null;
     });
 };
@@ -63,6 +64,8 @@ export const editProfile = async ({
   desc,
   category = null,
   img = null,
+  hayWorkHours,
+  workHours,
 }) => {
   const uid = app.auth().currentUser.uid;
   analytics.logEvent("Edit_Profile", {
@@ -75,27 +78,31 @@ export const editProfile = async ({
     if (img && img.length > 0)
       await uploadImg("/logos/" + uid + ".jpg", img[0]);
 
-    await app.firestore().collection("places").doc(uid).set(
-      {
-        name,
-        address,
-        phone,
-        instagram,
-        facebook,
-        whatsapp,
-        desc,
-        category,
-        create: false,
-      },
-      { merge: true }
-    );
+    let json_place = {
+      name,
+      address,
+      phone,
+      instagram,
+      facebook,
+      whatsapp,
+      desc,
+      create: false,
+    };
+
+    if (hayWorkHours) json_place.workHours = workHours;
+
+    await app
+      .firestore()
+      .collection("places")
+      .doc(uid)
+      .set(json_place, { merge: true });
 
     if (category) {
-      await app.firestore().collection(category).doc(uid).set({
-        name,
-        address,
-        phone,
-      });
+      let place_min = { name, address, phone };
+
+      if (hayWorkHours) place_min.workHours = workHours;
+
+      await app.firestore().collection(category).doc(uid).set(place_min);
     }
   } catch (e) {
     console.log(e);

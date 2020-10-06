@@ -8,6 +8,7 @@ import Loading from "components/Loading";
 import { editProfile } from "firebaseController";
 import UserContext from "components/Context/UserContext";
 import { Img } from "react-image";
+import WorkHours from "./workHours";
 
 export default function Edit({ create = false }) {
   const { account, setAccount } = useContext(UserContext);
@@ -25,11 +26,37 @@ export default function Edit({ create = false }) {
   const [insta, setInsta] = useState(account.instagram || "");
   const [category, setCategory] = useState(account.category || "");
   const [desc, setDesc] = useState(account.desc || "");
-  const [sunday, setSunday] = useState({
+  /*   const [sunday, setSunday] = useState({
     open: false,
     from: null,
-    to: null
-  });
+    to: null,
+  }); */
+
+  const [hayWorkHours, setHayWorkHours] = useState(false);
+
+  const [workHours, setWorkHours] = useState([
+    {
+      open: false,
+    },
+    {
+      open: false,
+    },
+    {
+      open: false,
+    },
+    {
+      open: false,
+    },
+    {
+      open: false,
+    },
+    {
+      open: false,
+    },
+    {
+      open: false,
+    },
+  ]);
 
   const [loading, setLoading] = useState(false);
 
@@ -52,6 +79,8 @@ export default function Edit({ create = false }) {
       desc,
       category: create ? category : null,
       img: image,
+      hayWorkHours,
+      workHours,
     })
       .then(() => {
         setAccount({
@@ -62,6 +91,8 @@ export default function Edit({ create = false }) {
           facebook: fb,
           whatsapp: wpp,
           desc,
+          hayWorkHours,
+          workHours,
         });
         alert("modificado con exito");
         setLoading(false);
@@ -218,7 +249,7 @@ export default function Edit({ create = false }) {
           />
         </div>
         <h2 className="profile-name">Horarios</h2>
-        <div
+        {/*  <div
           style={{
             display: "flex",
             alignItems: "center",
@@ -231,7 +262,7 @@ export default function Edit({ create = false }) {
             className="schedule-select"
             name="sunday"
             value={sunday.open}
-            onChange={(e) => setSunday({open: e.target.value})}
+            onChange={(e) => setSunday({ open: e.target.value })}
           >
             <option
               value="categorie"
@@ -249,7 +280,7 @@ export default function Edit({ create = false }) {
               display: "flex",
               justifyContent: "center",
               textAlign: "center",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <input
@@ -258,7 +289,7 @@ export default function Edit({ create = false }) {
               type="number"
               value={sunday.from}
               placeholder="1200"
-              onChange={(e) => setInsta({from: e.target.value})}
+              onChange={(e) => setInsta({ from: e.target.value })}
             />
             <p>a</p>
             <input
@@ -267,9 +298,22 @@ export default function Edit({ create = false }) {
               type="number"
               value={sunday.to}
               placeholder="2300"
-              onChange={(e) => setInsta({to: e.target.value})}
+              onChange={(e) => setInsta({ to: e.target.value })}
             />
           </div>
+        )} */}
+
+        <label style={{ fontSize: "12px" }}>
+          Ingresar horarios{" "}
+          <input
+            type="checkbox"
+            checked={hayWorkHours}
+            onChange={(e) => setHayWorkHours(e.target.checked)}
+          />
+        </label>
+
+        {hayWorkHours && (
+          <WorkHours workHours={workHours} setWorkHours={setWorkHours} />
         )}
       </div>
       <div className="container-button-profile">
