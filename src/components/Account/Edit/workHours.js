@@ -83,11 +83,13 @@ export default function WorkHours(props) {
             <div
               style={{
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 alignItems: "center",
+                width: "100%"
               }}
+    
             >
-              <p>{days[i]}</p>
+              <p  className="schedule-day">{days[i]}</p>
               {/* <input
                 type="checkbox"
                 checked={d.open}
@@ -110,9 +112,17 @@ export default function WorkHours(props) {
               </select>
             </div>
             {d.open === true && (
-              <button onClick={() => handleAddHours(i)}>
+              /* <button className="button" onClick={() => handleAddHours(i)}>
                 Agregar horario {days[i]}
-              </button>
+              </button> */
+              <div className="container-button-profile">
+                <button
+                  className="button transparent"
+                  onClick={() => handleAddHours(i)}
+                >
+                  +
+                </button>
+              </div>
             )}
             <div className="container-inputs-schedule">
               {Array.isArray(d.time) &&
@@ -132,12 +142,21 @@ export default function WorkHours(props) {
                 ))}
             </div>
             {d.open && (
-              <button
+              /* <button
                 onClick={() => handleRemoveHours(i)}
                 style={{ backgroundColor: "red", width: "100%" }}
               >
                 Quitar horarios {days[i]}
-              </button>
+              </button> */
+              <div className="container-button-profile">
+                <button
+                  className="button transparent"
+                  onClick={() => handleRemoveHours(i)}
+                  style={{ borderColor: "red", width: "100%" }}
+                >
+                  -
+                </button>
+              </div>
             )}
             {/* {d.open && (
               <button

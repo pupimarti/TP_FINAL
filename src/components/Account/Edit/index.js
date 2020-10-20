@@ -135,12 +135,13 @@ export default function Edit({ create = false }) {
       </header>
       <ImageUploader
         fileContainerStyle={{ background: "transparent" }}
+        label="200x200px"
         withIcon={true}
         withPreview={true}
         singleImage
         buttonText="Subir logo"
         onChange={handleImage}
-        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+        imgExtension={[".jpg", ".jpeg", ".png"]}
         maxFileSize={5242880}
       />
       {!create && (
@@ -306,15 +307,18 @@ export default function Edit({ create = false }) {
             />
           </div>
         )} */}
-
-        <label style={{ fontSize: "12px" }}>
-          Ingresar horarios{" "}
-          <input
-            type="checkbox"
-            checked={hayWorkHours}
-            onChange={(e) => setHayWorkHours(e.target.checked)}
-          />
-        </label>
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <label className="schedule-confirm">
+            Ingresar horarios{" "}
+            <input
+              type="checkbox"
+              checked={hayWorkHours}
+              onChange={(e) => setHayWorkHours(e.target.checked)}
+            />
+          </label>
+        </div>
 
         {hayWorkHours && (
           <WorkHours workHours={workHours} setWorkHours={setWorkHours} />
