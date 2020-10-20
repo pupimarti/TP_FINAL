@@ -135,12 +135,13 @@ export default function Edit({ create = false }) {
       </header>
       <ImageUploader
         fileContainerStyle={{ background: "transparent" }}
+        label="200x200px"
         withIcon={true}
         withPreview={true}
         singleImage
         buttonText="Subir logo"
         onChange={handleImage}
-        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+        imgExtension={[".jpg", ".jpeg", ".png"]}
         maxFileSize={5242880}
       />
       {!create && (
