@@ -30,10 +30,12 @@ jobs:
         with:
           name: build
           path: build
+      - name: Location
+        run: pwd
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_PATH: ./TP_FINAL
+          PROJECT_PATH: ./
