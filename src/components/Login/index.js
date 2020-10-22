@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 //firebase
 import app from "firebaseController";
+import firebase from "firebase/app";
+
 import Loading from "components/Loading";
 import UserContext from "components/Context/UserContext";
 
@@ -37,13 +39,23 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     setAccount("loading");
-    app
-      .auth()
-      .signInWithEmailAndPassword(mail, password)
-      .catch((e) => {
-        setLoading(false);
-        setError(getError(e));
-      });
+    if (mail === "admin@admin.com") {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      app
+        .auth()
+        .signInWithPopup(provider)
+        .catch((e) => {
+          console.log(e);
+        });
+    } else {
+      app
+        .auth()
+        .signInWithEmailAndPassword(mail, password)
+        .catch((e) => {
+          setLoading(false);
+          setError(getError(e));
+        });
+    }
   };
 
   // const signInUser = () => {

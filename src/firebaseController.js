@@ -20,9 +20,36 @@ const analytics = firebase.analytics();
 
 const refPlaces = app.firestore().collection("places");
 
+const refAdmin = app.firestore().collection("admins");
+
+const refRequests = app.firestore().collection("requests");
+
 export const getAccount = async () => {
   const uid = app.auth().currentUser.uid;
   if (!uid) return null;
+
+  const pData = app.auth().currentUser.providerData;
+  if (Array.isArray(pData)) {
+    if (pData[0].providerId === "google.com") {
+      return refAdmin
+        .doc(uid)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            return {
+              ...doc.data(),
+              uid: doc.id,
+              admin: true,
+            };
+          }
+          return null;
+        })
+        .catch((e) => {
+          console.log(e);
+          return null;
+        });
+    }
+  }
   return refPlaces
     .doc(uid)
     .get()
@@ -32,13 +59,58 @@ export const getAccount = async () => {
           ...doc.data(),
           uid: doc.id,
         };
+      } else {
+        checkPlaceIfRequest();
+        return null;
       }
-      return null;
     })
     .catch((e) => {
       console.log(e);
       return null;
     });
+};
+
+const checkPlaceIfRequest = async () => {
+  const user = app.auth().currentUser;
+  const docRequest = await refRequests.doc(user.uid).get();
+
+  if (!docRequest.exists)
+    await refRequests.doc(user.uid).set({
+      email: user.email,
+    });
+};
+
+export const getAccountsRequest = () => {
+  const uid = app.auth().currentUser.uid;
+  if (!uid) return [];
+
+  return refRequests
+    .get()
+    .then((db_get) => {
+      let db_data = [];
+      db_get.forEach((doc) => db_data.push({ ...doc.data(), id: doc.id }));
+      return db_data;
+    })
+    .catch((e) => {
+      console.log(e);
+      throw new Error("Ocurrió un error. Vuelva a intentarlo más tarde.");
+    });
+};
+
+export const acceptAccountRequest = async (userId) => {
+  const uid = app.auth().currentUser.uid;
+
+  try {
+    if (!uid) throw new Error("no-id");
+    await refPlaces.doc(userId).set({
+      create: true,
+    });
+    await refRequests.doc(userId).delete();
+    return;
+  } catch (e) {
+    console.log(e);
+    throw new Error("Ocurrió un error. Vuelva a intentarlo más tarde.");
+  }
 };
 
 const uploadImg = async (url, img) => {

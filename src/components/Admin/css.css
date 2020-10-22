@@ -1,0 +1,29 @@
+.admin-list-requests {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 2px solid #FAFAFA;
+  padding: 10px;
+}
+
+.admin-list-request {
+  font-size: 15px;
+  border: 1px solid #5282d0;
+  padding: 5px;
+  margin: 10px 0;
+}
+
+.request-id {
+  font-size: 13px;
+}
+
+.request-email {
+  margin-bottom: 10px;
+}
+
+.request-container-buttons {
+  display: flex;
+}
+
+.request-container-buttons > .button {
+  margin: 0 10px;
+}

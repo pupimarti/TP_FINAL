@@ -34,10 +34,16 @@ function Main() {
         {sections &&
           sections.map((s, i) => <Circle key={i} name={s.name} url={s.url} />)}
       </div>
-      {!user && (
+      {!user ? (
         <footer className="container-footer">
           <Link to="/login" className="footer">
             Para publicar tu comercio haz click aquí.
+          </Link>
+        </footer>
+      ) : (
+        <footer className="container-footer">
+          <Link to="/" className="footer">
+            Volver a mi cuenta
           </Link>
         </footer>
       )}
