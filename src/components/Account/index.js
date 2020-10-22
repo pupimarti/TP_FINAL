@@ -6,6 +6,7 @@ import { getAccount, SignOut } from "firebaseController";
 import logo from "img/logo-completo.png";
 import Loading from "components/Loading";
 import { Link } from "react-router-dom";
+import ListRequests from "components/Admin/ListRequests";
 
 export default function Account() {
   const { user, account, setAccount } = useContext(UserContext);
@@ -55,6 +56,24 @@ export default function Account() {
         </button>
       </div>
     );
+
+  if (account.admin) {
+    return (
+      <div className="content-account fade-in">
+        <header className="main-content-logo">
+          <img src={logo} alt="logo" className="main-logo" />
+        </header>
+        <h2 style={{ textAlign: "center" }}>Administrador</h2>
+        <Link to="/main" className="button">
+          Ver listado
+        </Link>
+        <ListRequests />
+        <button className="button transparent" onClick={handleSignOut}>
+          Cerrar sesión
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="content-account fade-in">
