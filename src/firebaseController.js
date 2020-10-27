@@ -113,6 +113,19 @@ export const acceptAccountRequest = async (userId) => {
   }
 };
 
+export const refuseAccountRequest = async (userId) => {
+  const uid = app.auth().currentUser.uid;
+
+  try {
+    if (!uid) throw new Error("no-id");
+    await refRequests.doc(userId).delete();
+    return;
+  } catch (e) {
+    console.log(e);
+    throw new Error("Ocurrió un error. Vuelva a intentarlo más tarde.");
+  }
+};
+
 const uploadImg = async (url, img) => {
   const storage = app.storage().ref().child(url);
   return await storage
