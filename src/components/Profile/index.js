@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./css.css";
 
 import { useLocation, Link } from "react-router-dom";
@@ -17,11 +17,14 @@ import { getPlace } from "firebaseController";
 
 import placeOpen from "components/functions/placeOpen";
 import WorkHours from "./WorkHours";
+import UserContext from "components/Context/UserContext";
 
 export default function Profile() {
   const id = useLocation().pathname.substr(1);
 
   const [data, setData] = useState("loading");
+
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     let mounted = true;
@@ -38,6 +41,7 @@ export default function Profile() {
 
   const getBack = () => {
     if (data && data.type) return "/" + data.type;
+    if (user) return "/main";
     return "/";
   };
 

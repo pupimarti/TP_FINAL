@@ -1,5 +1,9 @@
 import Loading from "components/Loading";
-import { acceptAccountRequest, getAccountsRequest } from "firebaseController";
+import {
+  acceptAccountRequest,
+  getAccountsRequest,
+  refuseAccountRequest,
+} from "firebaseController";
 import React, { useEffect, useState } from "react";
 import "./css.css";
 
@@ -34,6 +38,22 @@ export default function ListRequests() {
       });
   };
 
+  const handleRefuse = (uid) => {
+    if (!uid) return;
+    setLoading(true);
+    refuseAccountRequest(uid)
+      .then(() => {
+        setLoading(false);
+        alert("Rechazado con exito");
+        setShopsRequests("loading");
+      })
+      .catch((e) => {
+        setLoading(false);
+        console.log(e);
+        alert("Ocurrio un error al rechazar");
+      });
+  };
+
   if (shopsRequests === "loading" || loading) return <Loading />;
 
   if (shopsRequests === "error")
@@ -41,12 +61,28 @@ export default function ListRequests() {
 
   if (shopsRequests.length <= 0) {
     return (
-      <p style={{ textAlign: "center" }}>No hay solicitudes disponibles</p>
+      <div>
+        <button
+          style={{ margin: "0 auto" }}
+          className="button"
+          onClick={() => setShopsRequests("loading")}
+        >
+          Actualizar
+        </button>
+        <p style={{ textAlign: "center" }}>No hay solicitudes disponibles</p>
+      </div>
     );
   }
 
   return (
     <ul className="admin-list-requests">
+      <button
+        style={{ margin: "0 auto" }}
+        className="button"
+        onClick={() => setShopsRequests("loading")}
+      >
+        Actualizar
+      </button>
       {shopsRequests &&
         shopsRequests.map((s, i) => (
           <li className="admin-list-request" key={s.id + i}>
@@ -62,7 +98,12 @@ export default function ListRequests() {
               <button className="button" onClick={() => handleAccept(s.id)}>
                 Aceptar
               </button>
-              <button className="button transparent">Rechazar</button>
+              <button
+                className="button transparent"
+                onClick={() => handleRefuse(s.id)}
+              >
+                Rechazar
+              </button>
             </div>
           </li>
         ))}
