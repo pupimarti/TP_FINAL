@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./css.css";
 
 import logo from "img/logo-completo.png";
@@ -10,9 +10,11 @@ import Item from "./Item";
 import { getPlaces } from "firebaseController";
 
 import { Link } from "react-router-dom";
+import UserContext from "components/Context/UserContext";
 
 export default function List(props) {
   const [data, setData] = useState("loading");
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     let mounted = true;
@@ -74,7 +76,7 @@ export default function List(props) {
   return (
     <div className="container-list">
       <header className="navbar">
-        <Link to="/" className="container-back">
+        <Link to={user ? "/main" : "/"} className="container-back">
           <div className="back"></div>
         </Link>
         <Link to="/">
